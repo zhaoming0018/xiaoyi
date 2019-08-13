@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Virbot 51</title>
+	
+	<link rel="stylesheet" type="text/css" href="fonts/feather/style.css">
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<link href="https://cdn.bootcss.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+	<script src="js/modernizr.custom.js"></script>
+	<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+	<link href="https://cdn.bootcss.com/video.js/6.6.2/alt/video-js-cdn.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/video.js/6.6.2/video.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.15.0/videojs-contrib-hls.min.js" type="text/javascript"></script>
+   
+</head>
+<body>
+<div class="container">
+<div style="text-align:center;clear:both;">
+
+</div>
+
+<div style="padding: 20px 20px 0px 20px"><img src="images/logo5.png" width="90%" /></div>
+<h1 align="center" style="color: orange;margin: 0px; padding: 10px"><img width="60%" src="images/virlogo.png" /></h1>
+	<section class="slider" id="app-4">
+		<div :class="index == 0 ? 'slide slide--current' : 'slide'" data-content="content-4" v-for="(video, index) in videos">
+			<div class="slide__mover">
+				<div class="zoomer flex-center">
+					<img class="zoomer__image" src="images/imac.png" alt="iMac" />
+					<div class="preview">
+							<!-- :preload="index == 0? 'auto' : 'none'" -->
+						<video width="315px" height="189px" controls="controls"   class="video-js vjs-default-skin vjs-big-play-centered" data-setup="{}">
+							<source id="source" :src="video.src" type="application/x-mpegURL"></source>
+						</video>
+					</div>
+				</div>
+			</div>
+			<h2 class="slide__title"><span></span> {{ video.intro }}</h2>
+		</div>
+		
+		
+		<nav class="slider__nav">
+			<button class="button button--nav-prev"><i class="icon icon-arrow-left"></i><span class="text-hidden">Previous product</span></button>
+			<button class="button button--zoom"><i class="icon icon-play-circle"></i><span class="text-hidden">View details</span></button>
+			<button class="button button--nav-next"><i class="icon icon-arrow-right"></i><span class="text-hidden">Next product</span></button>
+		</nav>
+	</section>
+	<section class="content">
+			<div class="content__item" id="content-1">
+				<img class="content__item-img rounded-right" src="#" alt="Apple Watch Content" />
+				<div class="content__item-inner">
+					<h2>The iPhone 6</h2>
+					<h3>Incredible performance for powerful apps</h3>
+					<p>Built on 64-bit desktop-class architecture, the new A8 chip delivers more power, even while driving a larger display. The M8 motion coprocessor efficiently gathers data from advanced sensors and a new barometer. And with increased battery life, iPhone 6 lets you do more, for longer than ever.</p>
+					<p>Learn more about this technology &xrarr;</p>
+				</div>
+			</div>
+			<button class="button button--close"><i class="icon icon--circle-cross"></i><span class="text-hidden">Close content</span></button>
+		</section>
+	
+
+</div>
+
+
+<script>
+var app4 = new Vue({
+		el: '#app-4',
+		data: {
+			videos: [
+			{ src: 'videos/表演时间.m3u8', intro: 'Show Time'},
+			{ src: 'videos/除夕.m3u8', intro: 'New Year\'s Eve'},
+			{ src: 'videos/加油.m3u8', intro: 'Come on'},
+			{ src: 'videos/交通畅通.m3u8', intro: 'Light Traffic'},
+			{ src: 'videos/李开复.m3u8', intro: 'Kai-fu Lee'},
+			{ src: 'videos/神奇.m3u8', intro: 'Amazing'},
+			{ src: 'videos/我是小一.m3u8', intro: 'I am Xiaoyi'}
+			]
+		},
+		
+	})
+</script>
+<script src="js/classie.js"></script>
+<script src="js/dynamics.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
