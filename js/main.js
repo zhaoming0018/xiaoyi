@@ -11,49 +11,21 @@
 ;(function(window) {
 
 	'use strict';
-
-	var bodyEl = document.body, 
-		docElem = window.document.documentElement,
-		support = { transitions: Modernizr.csstransitions },
-		// transition end event name
-		transEndEventNames = { 'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend' },
-		transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
-		onEndTransition = function( el, callback ) {
-			var onEndCallbackFn = function( ev ) {
-				if( support.transitions ) {
-					if( ev.target != this ) return;
-					this.removeEventListener( transEndEventName, onEndCallbackFn );
-				}
-				if( callback && typeof callback === 'function' ) { callback.call(this); }
-			};
-			if( support.transitions ) {
-				el.addEventListener( transEndEventName, onEndCallbackFn );
-			}
-			else {
-				onEndCallbackFn();
-			}
-		},
-		// window sizes
-		win = {width: window.innerWidth, height: window.innerHeight},
-		// some helper vars to disallow scrolling
-		lockScroll = false, xscroll, yscroll,
-		scrollContainer = document.querySelector('.container'),
-		// the main slider and its items
-		sliderEl = document.querySelector('.slider'),
-		items = [].slice.call(sliderEl.querySelectorAll('.slide')),
-		// total number of items
-		itemsTotal = items.length,
-		// navigation controls/arrows
-		navRightCtrl = sliderEl.querySelector('.button--nav-next'),
-		navLeftCtrl = sliderEl.querySelector('.button--nav-prev'),
-		zoomCtrl = sliderEl.querySelector('.button--zoom'),
-		// index of current item
-		current = 0,
-		// check if an item is "open"
-		isOpen = false,
-		isFirefox = typeof InstallTrigger !== 'undefined',
-		// scale body when zooming into the items, if not Firefox (the performance in Firefox is not very good)
-		bodyScale = isFirefox ? false : 3;
+	
+	// the main slider and its items
+	var win = {width: window.innerWidth, height: window.innerHeight},
+	sliderEl = document.querySelector('.slider'),
+	items = [].slice.call(sliderEl.querySelectorAll('.slide')),
+	// total number of items
+	itemsTotal = items.length,
+	// navigation controls/arrows
+	navRightCtrl = sliderEl.querySelector('.button--nav-next'),
+	navLeftCtrl = sliderEl.querySelector('.button--nav-prev'),
+	zoomCtrl = sliderEl.querySelector('.button--zoom'),
+	// index of current item
+	current = 0,
+	// check if an item is "open"
+	isOpen = false;
 
 	// from http://www.sberry.me/articles/javascript-event-throttling-debouncing
 	function throttle(fn, delay) {
